@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ShoppingCart } from 'lucide-react'
 import { useLang } from '../context/LangContext'
 import { useApp } from '../context/AppContext'
@@ -7,12 +7,16 @@ import { useApp } from '../context/AppContext'
 export default function Navbar() {
   const { lang, setLang, t } = useLang()
   const { cartCount } = useApp()
+  const location = useLocation()
+
+  // Hide navbar on role picker — it has its own minimal header
+  if (location.pathname === '/') return null
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/events" className="flex items-center gap-2">
           <span className="text-xl font-black tracking-widest uppercase bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
             Michelle's
           </span>

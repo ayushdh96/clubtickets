@@ -150,7 +150,7 @@ export default function PaymentSuccess() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/events')}
           className="w-full flex items-center justify-center gap-2 glass border border-white/18 hover:border-[#ff2d78]/45 py-4 rounded-2xl font-semibold text-sm transition-all hover:scale-[1.02]"
         >
           <ArrowLeft className="w-4 h-4" />

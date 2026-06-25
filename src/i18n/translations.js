@@ -1,5 +1,20 @@
 const translations = {
   en: {
+    // Role Picker
+    role_title: 'How are you joining tonight?',
+    role_guest: "I'm a Guest",
+    role_guest_sub: 'Browse events & book your spot',
+    role_owner: 'Club Owner',
+    role_owner_sub: 'Owner Portal — Coming Soon',
+
+    // Events Page
+    events_title: 'Events Tonight',
+    events_select: 'Select Venue',
+    events_tonight: 'TONIGHT',
+    events_genre: 'House · Hip-Hop · R&B',
+    events_no_events: 'No other events on this date',
+    events_always_on: "Michelle's is always on the list",
+
     // Navbar
     nav_checkin: 'Table Check-In',
 
@@ -124,6 +139,21 @@ const translations = {
   },
 
   es: {
+    // Role Picker
+    role_title: '¿Cómo te unes esta noche?',
+    role_guest: 'Soy un Invitado',
+    role_guest_sub: 'Explora eventos y reserva tu lugar',
+    role_owner: 'Dueño del Club',
+    role_owner_sub: 'Portal de Propietario — Próximamente',
+
+    // Events Page
+    events_title: 'Eventos Esta Noche',
+    events_select: 'Seleccionar Lugar',
+    events_tonight: 'ESTA NOCHE',
+    events_genre: 'House · Hip-Hop · R&B',
+    events_no_events: 'No hay otros eventos en esta fecha',
+    events_always_on: "Michelle's siempre está en la lista",
+
     // Navbar
     nav_checkin: 'Registro de Mesa',
 

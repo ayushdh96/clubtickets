@@ -3,6 +3,8 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import { LangProvider } from './context/LangContext'
 import { AppProvider } from './context/AppContext'
 import Navbar from './components/Navbar'
+import RolePicker from './pages/RolePicker'
+import EventsPage from './pages/EventsPage'
 import Home from './pages/Home'
 import SeatSelection from './pages/SeatSelection'
 import BookingConfirmed from './pages/BookingConfirmed'
@@ -20,7 +22,9 @@ export default function App() {
           <div className="min-h-screen bg-[#0a0a0a] text-white">
             <Navbar />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<RolePicker />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/seats" element={<SeatSelection />} />
               <Route path="/booking-confirmed" element={<BookingConfirmed />} />
               <Route path="/checkin" element={<CheckIn />} />

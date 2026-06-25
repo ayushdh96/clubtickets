@@ -84,7 +84,7 @@ export default function BookingConfirmed() {
   const bookingRef = getBookingRef()
 
   useEffect(() => {
-    if (selectedItems.length === 0) navigate('/')
+    if (selectedItems.length === 0) navigate('/events')
   }, [selectedItems, navigate])
 
   const selectionLabels = selectedItems
@@ -154,7 +154,7 @@ export default function BookingConfirmed() {
         </div>
 
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/events')}
           className="w-full flex items-center justify-center gap-2 glass border border-white/20 hover:border-[#ff2d78]/50 py-4 rounded-2xl font-semibold text-sm transition-all hover:scale-[1.02]"
         >
           <ArrowLeft className="w-4 h-4" />

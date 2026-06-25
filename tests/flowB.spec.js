@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Flow B — Check-In → Order → Payment', () => {
   test('Check-In → Menu → Cart → Payment → Success', async ({ page }) => {
-    // 1. Navigate to check-in
+    // 1. Navigate to check-in (deep link — staff flow bypasses events)
     await page.goto('/#/checkin')
     await expect(page.getByTestId('checkin-heading')).toBeVisible()
 
