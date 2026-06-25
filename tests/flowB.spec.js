@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Flow B — Check-In → Order → Payment', () => {
   test('Check-In → Menu → Cart → Payment → Success', async ({ page }) => {
     // 1. Navigate to check-in
-    await page.goto('/checkin')
+    await page.goto('/#/checkin')
     await expect(page.getByTestId('checkin-heading')).toBeVisible()
 
     // 2. Table 4 should be visible and highlighted
@@ -12,7 +12,7 @@ test.describe('Flow B — Check-In → Order → Payment', () => {
 
     // 3. Click table 4 → navigate to menu
     await table4.click()
-    await expect(page).toHaveURL('/menu')
+    await expect(page).toHaveURL(/#\/menu/)
 
     // 4. Add first two available items
     const addBtns = page.getByTestId('add-item-btn')
@@ -27,11 +27,11 @@ test.describe('Flow B — Check-In → Order → Payment', () => {
 
     // 6. Navigate to cart via cart-badge-link in navbar
     await page.getByTestId('cart-badge-link').click()
-    await expect(page).toHaveURL('/cart')
+    await expect(page).toHaveURL(/#\/cart/)
 
     // 7. Proceed to payment
     await page.getByTestId('proceed-to-payment').click()
-    await expect(page).toHaveURL('/payment')
+    await expect(page).toHaveURL(/#\/payment$/)
 
     // 8. Fill mock card form
     await page.getByTestId('card-number-input').fill('4242424242424242')
@@ -43,7 +43,7 @@ test.describe('Flow B — Check-In → Order → Payment', () => {
     await page.getByTestId('pay-now-btn').click()
 
     // 10. Reach success page
-    await expect(page).toHaveURL('/payment-success', { timeout: 5000 })
+    await expect(page).toHaveURL(/#\/payment-success/, { timeout: 5000 })
     await expect(page.getByTestId('payment-success')).toBeVisible()
   })
 })

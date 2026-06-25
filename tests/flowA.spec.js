@@ -14,11 +14,13 @@ test.describe('Flow A — Ticket Booking', () => {
 
     // 3. Click → navigate to /seats
     await bookBtn.click()
-    await expect(page).toHaveURL('/seats')
+    await expect(page).toHaveURL(/#\/seats/)
 
-    // 4. Select 3 available seats
+    // 4. Select 3 available items (VIP, table or floor spot — all share data-seat-status="available")
     const available = page.locator('[data-seat-status="available"]')
-    await available.first().click()
+    const first = available.first()
+    await first.click()
+    // After first click it becomes selected — click the NEW first available (not same element)
     await available.first().click()
     await available.first().click()
 
@@ -31,7 +33,7 @@ test.describe('Flow A — Ticket Booking', () => {
     await confirmBtn.click()
 
     // 7. Booking confirmed page
-    await expect(page).toHaveURL('/booking-confirmed')
+    await expect(page).toHaveURL(/#\/booking-confirmed/)
     await expect(page.getByTestId('booking-summary')).toBeVisible()
   })
 })

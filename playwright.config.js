@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'line',
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: 'http://localhost:5173/clubtickets/',
     trace: 'on-first-retry',
     actionTimeout: 8000,
   },
@@ -20,7 +20,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:5173',
+    url: 'http://localhost:5173/clubtickets/',
     reuseExistingServer: true,
     timeout: 30000,
   },

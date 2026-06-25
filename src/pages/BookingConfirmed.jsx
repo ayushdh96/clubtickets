@@ -5,8 +5,6 @@ import { CheckCircle2, ArrowLeft } from 'lucide-react'
 import { useLang } from '../context/LangContext'
 import { useApp } from '../context/AppContext'
 
-const SEAT_PRICE = 45
-
 // Deterministic fake QR — static 21×21 matrix
 const QR = [
   [1,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1],
@@ -81,24 +79,18 @@ function getBookingRef() {
 
 export default function BookingConfirmed() {
   const { t } = useLang()
-  const { selectedSeats } = useApp()
+  const { selectedItems, bookingTotal } = useApp()
   const navigate = useNavigate()
   const bookingRef = getBookingRef()
 
   useEffect(() => {
-    if (selectedSeats.length === 0) navigate('/')
-  }, [selectedSeats, navigate])
+    if (selectedItems.length === 0) navigate('/')
+  }, [selectedItems, navigate])
 
-  const total = selectedSeats.length * SEAT_PRICE
-
-  const seatLabels = selectedSeats
-    .slice(0, 8)
-    .map((id) => {
-      const row = String.fromCharCode(64 + Math.ceil(id / 20))
-      const col = ((id - 1) % 20) + 1
-      return `${row}${col}`
-    })
-    .join(', ') + (selectedSeats.length > 8 ? ` +${selectedSeats.length - 8}` : '')
+  const selectionLabels = selectedItems
+    .slice(0, 6)
+    .map((i) => i.label)
+    .join(', ') + (selectedItems.length > 6 ? ` +${selectedItems.length - 6}` : '')
 
   return (
     <div className="relative min-h-screen pt-20 flex items-center justify-center px-4 overflow-hidden">
@@ -140,8 +132,8 @@ export default function BookingConfirmed() {
           {[
             { label: t('booking_ref'), value: bookingRef, gold: true },
             { label: t('booking_date_label'), value: t('booking_date_value') },
-            { label: t('booking_seats_label'), value: seatLabels || '—' },
-            { label: t('booking_total_label'), value: `$${total}`, gold: true },
+            { label: t('booking_seats_label'), value: selectionLabels || '—' },
+            { label: t('booking_total_label'), value: `$${bookingTotal}`, gold: true },
           ].map(({ label, value, gold }) => (
             <div
               key={label}

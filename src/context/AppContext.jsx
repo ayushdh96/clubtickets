@@ -3,9 +3,18 @@ import React, { createContext, useContext, useState } from 'react'
 const AppContext = createContext(null)
 
 export function AppProvider({ children }) {
-  const [selectedSeats, setSelectedSeats] = useState([])
+  // selectedItems: [{id, type, label, price}]
+  const [selectedItems, setSelectedItems] = useState([])
   const [cart, setCart] = useState([])
   const tableNumber = 4
+
+  const toggleItem = (item) => {
+    setSelectedItems((prev) => {
+      const exists = prev.find((i) => i.id === item.id)
+      if (exists) return prev.filter((i) => i.id !== item.id)
+      return [...prev, item]
+    })
+  }
 
   const addToCart = (item) => {
     setCart((prev) => {
@@ -32,12 +41,15 @@ export function AppProvider({ children }) {
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0)
   const cartSubtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0)
   const cartTotal = Math.round(cartSubtotal * 1.15 * 100) / 100
+  const bookingTotal = selectedItems.reduce((s, i) => s + i.price, 0)
 
   return (
     <AppContext.Provider
       value={{
-        selectedSeats,
-        setSelectedSeats,
+        selectedItems,
+        setSelectedItems,
+        toggleItem,
+        bookingTotal,
         cart,
         addToCart,
         removeFromCart,
